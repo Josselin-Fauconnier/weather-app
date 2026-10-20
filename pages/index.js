@@ -31,7 +31,10 @@ export const App = () => {
       setWeatherData({ ...data });
       setCityInput("");
     };
-    getData();
+    
+    getData(); 
+    const refreshInterval = setInterval(getData, 60 * 60 * 1000); 
+    return () => clearInterval(refreshInterval); 
   }, [triggerFetch]);
 
   const changeSystem = () =>

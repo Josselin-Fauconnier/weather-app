@@ -31,7 +31,7 @@ export const getVisibility = (unitSystem, visibilityInMeters) =>
 //     : "";
 
 // Open-Meteo donne l'heure déjà locale au format ISO ("2026-10-20T08:15") :
-// il suffit de garder la partie après le "T" ("08:15").
+
 export const getTime = (unitSystem, isoTime) =>
   unitSystem == "metric"
     ? isoTime.split("T")[1]
