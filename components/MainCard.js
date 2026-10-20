@@ -23,16 +23,28 @@ export const MainCard = ({
         alt="weatherIcon"
       />
       <h1 className={styles.temperature}>
-        {unitSystem == "metric"
-          ? Math.round(weatherData.main.temp)
-          : Math.round(ctoF(weatherData.main.temp))}
+        {
+          // Ancienne version (OpenWeatherMap) :
+          // unitSystem == "metric"
+          //   ? Math.round(weatherData.main.temp)
+          //   : Math.round(ctoF(weatherData.main.temp))
+          unitSystem == "metric"
+            ? Math.round(weatherData.current.temperature_2m)
+            : Math.round(ctoF(weatherData.current.temperature_2m))
+        }
         °{unitSystem == "metric" ? "C" : "F"}
       </h1>
       <p>
         Feels like{" "}
-        {unitSystem == "metric"
-          ? Math.round(weatherData.main.feels_like)
-          : Math.round(ctoF(weatherData.main.feels_like))}
+        {
+          // Ancienne version (OpenWeatherMap) :
+          // unitSystem == "metric"
+          //   ? Math.round(weatherData.main.feels_like)
+          //   : Math.round(ctoF(weatherData.main.feels_like))
+          unitSystem == "metric"
+            ? Math.round(weatherData.current.apparent_temperature)
+            : Math.round(ctoF(weatherData.current.apparent_temperature))
+        }
         °{unitSystem == "metric" ? "C" : "F"}
       </p>
     </div>

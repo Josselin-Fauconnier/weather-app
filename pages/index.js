@@ -10,6 +10,8 @@ import { UnitSwitch } from "../components/UnitSwitch";
 import { LoadingScreen } from "../components/LoadingScreen";
 import { ErrorScreen } from "../components/ErrorScreen";
 
+import { getWeatherInfo } from "../services/weatherCodes";
+
 import styles from "../styles/Home.module.css";
 
 export const App = () => {
@@ -37,13 +39,30 @@ export const App = () => {
       ? setUnitSystem("imperial")
       : setUnitSystem("metric");
 
-  return weatherData && !weatherData.message ? (
+  // Ancienne version (OpenWeatherMap) : l'erreur était signalée par "message"
+  // return weatherData && !weatherData.message ? (
+  return weatherData && !weatherData.error ? (
     <div className={styles.wrapper}>
       <MainCard
-        city={weatherData.name}
-        country={weatherData.sys.country}
-        description={weatherData.weather[0].description}
-        iconName={weatherData.weather[0].icon}
+        // Ancienne version (OpenWeatherMap) :
+        // city={weatherData.name}
+        // country={weatherData.sys.country}
+        // description={weatherData.weather[0].description}
+        // iconName={weatherData.weather[0].icon}
+        city={weatherData.city}
+        country={weatherData.country}
+        description={
+          getWeatherInfo(
+            weatherData.current.weather_code,
+            weatherData.current.is_day
+          ).description
+        }
+        iconName={
+          getWeatherInfo(
+            weatherData.current.weather_code,
+            weatherData.current.is_day
+          ).icon
+        }
         unitSystem={unitSystem}
         weatherData={weatherData}
       />
@@ -68,7 +87,9 @@ export const App = () => {
         <UnitSwitch onClick={changeSystem} unitSystem={unitSystem} />
       </ContentBox>
     </div>
-  ) : weatherData && weatherData.message ? (
+    // Ancienne version (OpenWeatherMap) :
+    // ) : weatherData && weatherData.message ? (
+  ) : weatherData && weatherData.error ? (
     <ErrorScreen errorMessage="City not found, try again!">
       <Search
         onFocus={(e) => (e.target.value = "")}
