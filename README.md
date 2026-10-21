@@ -1,12 +1,12 @@
 # Weather App
 
-Check the current weather on any city on the planet. Switch between metric and imperial units.
+Display the current weather of a pre-configured city on public transport information screens. Weather data comes from the [Open-Meteo](https://open-meteo.com/) API and is refreshed every hour. Switch between metric and imperial units.
 
 ![Alt img](https://images.ctfassets.net/zlsyc9paq6sa/3uBrJ07WSM40FpolgjInHY/7d886cb4187b52194bf9b63c183a1d3a/1627637330_x.gif)
 
 ## Features
 
-1. User's ability to search cities
+1. City configured in a JSON file (`configjson/weather.json`)
 
 2. Current local time and date
 
@@ -20,23 +20,35 @@ Check the current weather on any city on the planet. Switch between metric and i
 
 7. Error handling and loading info
 
+8. Automatic data refresh every hour
+
 ## Installation
 
-1. `git clone https://github.com/madzadev/weather-app.git`
+1. `git clone https://github.com/Josselin-Fauconnier/weather-app.git`
 
 2. `cd weather-app`
 
 3. `npm install`
 
-4. Log-in to [Openweathermap.com](https://openweathermap.org/)
+4. Set the city in `configjson/weather.json` (no API key needed):
 
-5. Create an API key
+   ```json
+   {
+     "city": "Montreuil",
+     "country": "FR",
+     "latitude": 48.8642,
+     "longitude": 2.4432
+   }
+   ```
 
-6. `cp .env.example .env.local`
+5. `npm run dev`
 
-7. Paste API key for `OPENWEATHER_API_KEY`
+## Nettoyage recherche par texte
 
-8. `npm run dev`
+The city search has been removed: the city now comes from the configuration file. The following files have been deleted 
+
+- `components/Search.js` and `components/Search.module.css`: search bar component, no longer used
+- `.env.example`: contained the OpenWeatherMap API key, no longer needed with Open-Meteo
 
 ## Contributions
 
