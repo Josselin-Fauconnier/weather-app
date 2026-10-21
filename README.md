@@ -43,16 +43,6 @@ Display the current weather of a pre-configured city on public transport informa
 
 5. `npm run dev`
 
-## Nettoyage recherche par texte
-
-The city search has been removed: the city now comes from the configuration file. The following files have been deleted 
-
-- `components/Search.js` and `components/Search.module.css`: search bar component, no longer used
-- `.env.example`: contained the OpenWeatherMap API key, no longer needed with Open-Meteo
-
-## Contributions
-
-Any feature requests and pull requests are welcome!
 
 ## License
 
